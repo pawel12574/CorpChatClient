@@ -10,4 +10,6 @@
 
 <video #myvideo></video>
 
-<article><!-- our canvas will be inserted here--></article>
+<div *ngIf="peer">
+ <app-canvas [peer] = "peer"></app-canvas>
+</div>

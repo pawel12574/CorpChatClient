@@ -10,6 +10,7 @@ import {RequestOptions} from "@angular/http";
 export class AuthenticationService {
 
   observer;
+  peer = null;
 
 
   constructor(private httpClient: HttpClient) {
@@ -50,6 +51,19 @@ export class AuthenticationService {
     const username = localStorage.getItem('username');
     return this.httpClient.get(`http://localhost:8081/getFriend/` + username);
   }
+
+  // getPeer() {
+  //
+  //   let user;
+  //   this.getUser().subscribe(data => {
+  //     user = data;
+  //
+  //       this.peer = new Peer(user.id, {key: '6qn8ssv10dkdfgvi'});
+  //
+  //       return this.peer;
+  //
+  //   });
+  // }
 
   logout() {
     console.log('logout');

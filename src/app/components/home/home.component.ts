@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
   mypeerid;
   friendsList: any = [];
 
+
+
   constructor(private authenticationService: AuthenticationService) {
   }
 
