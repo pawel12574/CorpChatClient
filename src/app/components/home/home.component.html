@@ -1,11 +1,13 @@
-
 <app-friendlist (friendEvent)="getFriends($event)"></app-friendlist>
-<li *ngFor="let user of friendsList">
-  {{user.email}}
-  <button (click)="connect(user.id)">Connect</button>
-</li>
 
+<ul class="nav flex-column">
+  <li class="nav-item" *ngFor="let user of friendsList">
+    {{user.email}}
+    <button class="btn btn-info" (click)="connect(user.id)">Connect</button>
+  </li>
+
+</ul>
 
 <video #myvideo></video>
 
-
+<article><!-- our canvas will be inserted here--></article>
