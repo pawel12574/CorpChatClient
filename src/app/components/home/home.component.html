@@ -1,3 +1,11 @@
-<p>
-  home works!
-</p>
+
+<app-friendlist (friendEvent)="getFriends($event)"></app-friendlist>
+<li *ngFor="let user of friendsList">
+  {{user.email}}
+  <button (click)="connect(user.id)">Connect</button>
+</li>
+
+
+<video #myvideo></video>
+
+

@@ -16,15 +16,39 @@ export class AuthenticationService {
   }
 
   login(user) {
-    const headers = new HttpHeaders(user ? {
-      authorization : 'Basic ' + btoa(user.username + ':' + user.password)
-    } : {});
+    // const headers = new HttpHeaders(user ? {
+    //   authorization : 'Basic ' + btoa(user.username + ':' + user.password)
+    // } : {});
+    //
+    // const body = 'username=' + user.username + '&password=' + user.password;
+    //   this.httpClient.post(`http://localhost:8081/login`, user).subscribe(data => {
+//   console.log(data)
+//   if (data === true) {
+//   localStorage.setItem('username', user.username);
+// }
+// });
+    localStorage.setItem('username', user.email);
+    return this.httpClient.post(`http://localhost:8081/log`, user);
 
-    return this.httpClient.get(`http://localhost:8081/user`,  {headers: headers});
+  }
+
+  getLoggedUsername() {
+    return localStorage.getItem('username');
+  }
+
+  getUser() {
+    const username = localStorage.getItem('username');
+    return this.httpClient.get(`http://localhost:8081/find/` + username);
   }
 
   register(user) {
+
     return this.httpClient.post(`http://localhost:8081/register`, user);
+  }
+
+  getFriendList() {
+    const username = localStorage.getItem('username');
+    return this.httpClient.get(`http://localhost:8081/getFriend/` + username);
   }
 
   logout() {

@@ -10,6 +10,7 @@ import {AppRoutingModule} from "./app-routing-module";
 import {FormsModule} from "@angular/forms";
 import {AuthenticationService} from "./components/services/authentication.service";
 import {HttpClientModule} from "@angular/common/http";
+import { FriendlistComponent } from './components/friendlist/friendlist.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {HttpClientModule} from "@angular/common/http";
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    FriendlistComponent
   ],
   imports: [
     BrowserModule,
