@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
 
     setTimeout(() => {
       this.videoconnect();
-    }, 1000);
+    }, 2000);
 
   }
 
