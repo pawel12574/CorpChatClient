@@ -72,6 +72,14 @@ export class AuthenticationService {
     this.router.navigate(['/login']);
   }
 
+  searchUser(email) {
+    return this.httpClient.get(`http://localhost:8081/find/` + email);
+  }
+
+  addFriend(email) {
+    const username = localStorage.getItem('username');
+    return this.httpClient.get(`http://localhost:8081/addFriend` + username + `/` + email);
+  }
 
   createObservable(): Observable<any> {
     return new Observable<any>(observer => {
