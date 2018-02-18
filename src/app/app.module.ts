@@ -13,6 +13,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { FriendlistComponent } from './components/friendlist/friendlist.component';
 import { CanvasComponent } from './components/canvas/canvas.component';
 import { FriendComponent } from './components/friend/friend.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import {AuthService} from "./components/services/auth.service";
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { FriendComponent } from './components/friend/friend.component';
     HomeComponent,
     FriendlistComponent,
     CanvasComponent,
-    FriendComponent
+    FriendComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,7 @@ import { FriendComponent } from './components/friend/friend.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
 
   model: any = {};
   loading = false;
+  message = false;
 
   ngOnInit(): void {
   }
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/']);
         },
         error => {
+          this.message = true;
           this.loading = false;
         });
   }

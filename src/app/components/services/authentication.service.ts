@@ -5,6 +5,7 @@ import {} from 'rxjs/add/Observable/of';
 import {Subscription} from "rxjs/Subscription";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {RequestOptions} from "@angular/http";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthenticationService {
@@ -13,7 +14,7 @@ export class AuthenticationService {
   peer = null;
 
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,  private router: Router) {
   }
 
   login(user) {
@@ -67,8 +68,8 @@ export class AuthenticationService {
 
   logout() {
     console.log('logout');
-    localStorage.setItem('logged', 'false');
-    this.observer.next(false);
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 
 

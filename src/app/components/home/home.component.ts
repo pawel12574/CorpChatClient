@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   anotherid;
   mypeerid;
   friendsList: any = [];
-
+  selectedFriend;
 
 
   constructor(private authenticationService: AuthenticationService) {
@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit {
   }
 
   videoconnect() {
-    let video = this.myVideo.nativeElement;
+    const video = this.myVideo.nativeElement;
     const localvar = this.peer;
     const fname = this.anotherid;
 
@@ -96,5 +96,9 @@ export class HomeComponent implements OnInit {
     this.friendsList = event;
     console.log(this.friendsList);
 
+  }
+
+  select(user) {
+    this.selectedFriend = user;
   }
 }

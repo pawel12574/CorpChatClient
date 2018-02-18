@@ -1,15 +1,22 @@
+
 <app-friendlist (friendEvent)="getFriends($event)"></app-friendlist>
 
-<ul class="nav flex-column">
-  <li class="nav-item" *ngFor="let user of friendsList">
-    {{user.email}}
-    <button class="btn btn-info" (click)="connect(user.id)">Connect</button>
-  </li>
 
-</ul>
+<div class="sidenav">
 
-<video #myvideo></video>
+  <ul class="nav flex-column">
+    <li class="nav-item" *ngFor="let user of friendsList"  (click)="select(user)">
 
-<div *ngIf="peer">
- <app-canvas [peer] = "peer"></app-canvas>
+      <button class="btn btn-info marginButton" (click)="connect(user.id)">{{user.email}}</button>
+    </li>
+
+  </ul>
 </div>
+
+<video class="main" #myvideo></video>
+
+<!--<div *ngIf="peer">-->
+ <!--<app-canvas [peer] = "peer"></app-canvas>-->
+<!--</div>-->
+<app-friend  *ngIf="selectedFriend" [friend] = "selectedFriend"></app-friend>
+
