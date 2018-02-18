@@ -12,12 +12,13 @@ export class SearchComponent implements OnInit {
   search;
   finded: any = {};
   loading = false;
-  message;
+  success = false;
 
   constructor(private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
+    console.log(this.finded);
   }
 
   searchUser() {
@@ -25,14 +26,20 @@ export class SearchComponent implements OnInit {
     this.authenticationService.searchUser(this.search).subscribe(data => {
       this.finded = data;
       this.loading = false;
-    });
+      this.success = true;
+    }
+      ,
+      error => {
+        this.finded = {};
+        this.success = false;
+        this.loading = false;
+      });
   }
 
   addFriend() {
     this.authenticationService.addFriend(this.finded.email).subscribe(data => {
-      this.message = `Friend add to list`;
+      // this.message = `Friend add to list`;
     });
-
   }
 
 }

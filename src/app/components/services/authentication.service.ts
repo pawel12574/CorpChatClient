@@ -78,7 +78,7 @@ export class AuthenticationService {
 
   addFriend(email) {
     const username = localStorage.getItem('username');
-    return this.httpClient.get(`http://localhost:8081/addFriend` + username + `/` + email);
+    return this.httpClient.get(`http://localhost:8081/addFriend/` + username + `/` + email);
   }
 
   createObservable(): Observable<any> {
