@@ -14,7 +14,7 @@ export class AuthenticationService {
   peer = null;
 
 
-  constructor(private httpClient: HttpClient,  private router: Router) {
+  constructor(private httpClient: HttpClient, private router: Router) {
   }
 
   login(user) {
@@ -70,6 +70,15 @@ export class AuthenticationService {
     console.log('logout');
     localStorage.clear();
     this.router.navigate(['/login']);
+  }
+
+  searchUser(email) {
+    return this.httpClient.get(`http://localhost:8081/find/` + email);
+  }
+
+  addFriend(email) {
+    const username = localStorage.getItem('username');
+    return this.httpClient.get(`http://localhost:8081/addFriend` + username + `/` + email);
   }
 
 

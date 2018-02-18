@@ -15,6 +15,7 @@ import { CanvasComponent } from './components/canvas/canvas.component';
 import { FriendComponent } from './components/friend/friend.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {AuthService} from "./components/services/auth.service";
+import { SearchComponent } from './components/search/search.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {AuthService} from "./components/services/auth.service";
     FriendlistComponent,
     CanvasComponent,
     FriendComponent,
-    NavbarComponent
+    NavbarComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
