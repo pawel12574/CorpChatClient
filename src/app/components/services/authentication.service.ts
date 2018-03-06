@@ -14,23 +14,15 @@ export class AuthenticationService {
   peer = null;
 
 
-  constructor(private httpClient: HttpClient,  private router: Router) {
+  constructor(private httpClient: HttpClient, private router: Router) {
   }
 
   login(user) {
-    // const headers = new HttpHeaders(user ? {
-    //   authorization : 'Basic ' + btoa(user.username + ':' + user.password)
-    // } : {});
-    //
-    // const body = 'username=' + user.username + '&password=' + user.password;
-    //   this.httpClient.post(`http://localhost:8081/login`, user).subscribe(data => {
-//   console.log(data)
-//   if (data === true) {
-//   localStorage.setItem('username', user.username);
-// }
-// });
-    localStorage.setItem('username', user.email);
-    return this.httpClient.post(`http://localhost:8081/log`, user);
+    const headers = new HttpHeaders(user ? {
+      authorization: 'Basic ' + btoa(user.username + ':' + user.password)
+    } : {});
+    localStorage.setItem('username', user.username);
+    return this.httpClient.get(`http://localhost:8081/user`, {headers: headers});
 
   }
 
@@ -40,7 +32,7 @@ export class AuthenticationService {
 
   getUser() {
     const username = localStorage.getItem('username');
-    return this.httpClient.get(`http://localhost:8081/find/` + username);
+    return this.httpClient.get(`http://localhost:8081/getloggedUser`);
   }
 
   register(user) {
@@ -53,19 +45,6 @@ export class AuthenticationService {
     return this.httpClient.get(`http://localhost:8081/getFriend/` + username);
   }
 
-  // getPeer() {
-  //
-  //   let user;
-  //   this.getUser().subscribe(data => {
-  //     user = data;
-  //
-  //       this.peer = new Peer(user.id, {key: '6qn8ssv10dkdfgvi'});
-  //
-  //       return this.peer;
-  //
-  //   });
-  // }
-
   logout() {
     console.log('logout');
     localStorage.clear();
@@ -73,7 +52,8 @@ export class AuthenticationService {
   }
 
   searchUser(email) {
-    return this.httpClient.get(`http://localhost:8081/find/` + email);
+    const username = localStorage.getItem('username');
+    return this.httpClient.get(`http://localhost:8081/find/` + username + `/` + email);
   }
 
   addFriend(email) {

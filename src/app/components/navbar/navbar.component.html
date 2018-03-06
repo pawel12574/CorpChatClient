@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light menu">
+<nav (click)="clicked()" class="navbar navbar-expand-lg navbar-light bg-light menu">
   <a class="navbar-brand" href="#">CorpChat</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -8,6 +8,10 @@
       <li class="nav-item">
         <a class="nav-link" (click)="logout()">Logout <span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item" *ngIf="isLogged">
+        <a [routerLink]="['/search']" class="nav-link" >Search friends<span class="sr-only">(current)</span></a>
+      </li>
+
     </ul>
   </div>
 </nav>

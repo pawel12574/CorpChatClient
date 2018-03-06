@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../services/authentication.service";
 
 @Component({
@@ -8,13 +8,21 @@ import {AuthenticationService} from "../services/authentication.service";
 })
 export class NavbarComponent implements OnInit {
 
+  isLogged;
+
   constructor(private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
   }
 
-  logout(){
+  clicked() {
+    this.authenticationService.getUser().subscribe(data => {
+      this.isLogged = data;
+    });
+  }
+
+  logout() {
     this.authenticationService.logout();
   }
 }
