@@ -26,12 +26,15 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
+          localStorage.setItem('username', this.model.username);
           this.router.navigate(['/']);
         },
         error => {
+          localStorage.clear();
           this.message = true;
           this.loading = false;
         });
+
   }
 
 }

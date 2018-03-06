@@ -1,5 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {AuthenticationService} from "../services/authentication.service";
+import {Router} from "@angular/router";
 
 //import Peer = require('peerjs');
 
@@ -19,12 +20,18 @@ export class HomeComponent implements OnInit {
   selectedFriend;
 
 
-  constructor(private authenticationService: AuthenticationService) {
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router) {
   }
 
   ngOnInit() {
+    // this.authenticationService.isAuthenticated().subscribe(data => {},
+    //   error => {
+    //     this.router.navigate(['/login']);
+    //   }
+    // );
     let user;
-    this.authenticationService.getUser().subscribe(data => {
+    this.authenticationService.getLoggedUser().subscribe(data => {
       user = data;
       const video = this.myVideo.nativeElement;
       this.peer = new Peer(user.id, {key: '6qn8ssv10dkdfgvi'});
@@ -95,7 +102,6 @@ export class HomeComponent implements OnInit {
   getFriends(event) {
     this.friendsList = event;
     console.log(this.friendsList);
-
   }
 
   select(user) {

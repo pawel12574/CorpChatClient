@@ -11,8 +11,7 @@ import {Router} from "@angular/router";
 export class AuthenticationService {
 
   observer;
-  peer = null;
-
+  isAuth;
 
   constructor(private httpClient: HttpClient, private router: Router) {
   }
@@ -21,34 +20,30 @@ export class AuthenticationService {
     const headers = new HttpHeaders(user ? {
       authorization: 'Basic ' + btoa(user.username + ':' + user.password)
     } : {});
-    localStorage.setItem('username', user.username);
     return this.httpClient.get(`http://localhost:8081/user`, {headers: headers});
 
+  }
+
+  logout() {
+    console.log('logout');
+    return this.httpClient.get(`http://localhost:8081/logout`, {});
+  }
+
+  register(user) {
+    return this.httpClient.post(`http://localhost:8081/register`, user);
   }
 
   getLoggedUsername() {
     return localStorage.getItem('username');
   }
 
-  getUser() {
-    const username = localStorage.getItem('username');
+  getLoggedUser() {
     return this.httpClient.get(`http://localhost:8081/getloggedUser`);
-  }
-
-  register(user) {
-
-    return this.httpClient.post(`http://localhost:8081/register`, user);
   }
 
   getFriendList() {
     const username = localStorage.getItem('username');
     return this.httpClient.get(`http://localhost:8081/getFriend/` + username);
-  }
-
-  logout() {
-    console.log('logout');
-    localStorage.clear();
-    this.router.navigate(['/login']);
   }
 
   searchUser(email) {
