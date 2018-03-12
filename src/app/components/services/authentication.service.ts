@@ -6,6 +6,7 @@ import {Subscription} from "rxjs/Subscription";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {RequestOptions} from "@angular/http";
 import {Router} from "@angular/router";
+import {Api} from "../../api";
 
 @Injectable()
 export class AuthenticationService {
@@ -13,24 +14,24 @@ export class AuthenticationService {
   observer;
   isAuth;
 
-  constructor(private httpClient: HttpClient, private router: Router) {
+  constructor(private httpClient: HttpClient, private router: Router, private api: Api) {
   }
 
   login(user) {
     const headers = new HttpHeaders(user ? {
       authorization: 'Basic ' + btoa(user.username + ':' + user.password)
     } : {});
-    return this.httpClient.get(`http://localhost:8081/user`, {headers: headers});
+    return this.httpClient.get(`${this.api}/user`, {headers: headers});
 
   }
 
   logout() {
     console.log('logout');
-    return this.httpClient.get(`http://localhost:8081/logout`, {});
+    return this.httpClient.get(`${this.api}/logout`, {});
   }
 
   register(user) {
-    return this.httpClient.post(`http://localhost:8081/register`, user);
+    return this.httpClient.post(`${this.api}/register`, user);
   }
 
   getLoggedUsername() {
@@ -38,22 +39,21 @@ export class AuthenticationService {
   }
 
   getLoggedUser() {
-    return this.httpClient.get(`http://localhost:8081/getloggedUser`);
+    return this.httpClient.get(`${this.api}/getloggedUser`);
   }
 
   getFriendList() {
-    const username = localStorage.getItem('username');
-    return this.httpClient.get(`http://localhost:8081/getFriend/` + username);
+    return this.httpClient.get(`${this.api}/getFriends/`);
   }
 
   searchUser(email) {
     const username = localStorage.getItem('username');
-    return this.httpClient.get(`http://localhost:8081/find/` + username + `/` + email);
+    return this.httpClient.get(`${this.api}/searchFriend/` + email);
   }
 
   addFriend(email) {
     const username = localStorage.getItem('username');
-    return this.httpClient.get(`http://localhost:8081/addFriend/` + username + `/` + email);
+    return this.httpClient.get(`${this.api}/addFriend/` + email);
   }
 
   createObservable(): Observable<any> {
