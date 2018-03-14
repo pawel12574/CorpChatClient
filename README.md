@@ -1,3 +1,8 @@
+# ToDo
+- Own PeerJS server(can't connect on https)
+- Private message via websockets
+- Improve UI
+
 # CorpChatClient
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.6.
