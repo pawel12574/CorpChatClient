@@ -67,6 +67,7 @@ export class HomeComponent implements OnInit {
   }
 
   connect(userId) {
+    console.log(userId);
     const conn = this.peer.connect(userId);
     this.anotherid = userId;
     conn.on('open', function () {
